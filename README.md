@@ -1,5 +1,6 @@
 # kivysome
 
+[![codecov](https://codecov.io/gh/matfax/kivysome/branch/master/graph/badge.svg)](https://codecov.io/gh/matfax/kivysome)
 [![CodeFactor](https://www.codefactor.io/repository/github/matfax/kivysome/badge)](https://www.codefactor.io/repository/github/matfax/kivysome)
 
 Font Awesome 5 Icons for Kivy

@@ -19,8 +19,9 @@ setup(
     name="kivysome",
     packages=find_packages(),
     version_config={
-        "version_format": "{tag}",
-        "starting_version": "0.1.0"
+        "template": "{tag}",
+        "dev_template": "{tag}.dev{ccount}+git.{sha}",
+        "dirty_template": "{tag}",
     },
     license="MIT",
     description="Font Awesome 5 Icons for Kivy",
@@ -30,7 +31,7 @@ setup(
     author_email="matthias.fax@gmail.com",
     url="https://github.com/matfax/kivysome",
     keywords=["kivy", "fa", "font", "awesome", "icons"],
-    setup_requires=["better-setuptools-git-version"],
+    setup_requires=["setuptools-git-ver"],
     install_requires=get_dependencies(),
     classifiers=[
         "Development Status :: 4 - Beta",
