@@ -2,7 +2,7 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/matfax/kivysome/badge)](https://www.codefactor.io/repository/github/matfax/kivysome)
 
-Font Awesome Icons for Kivy
+Font Awesome 5 Icons for Kivy
 
 ## Usage
 
