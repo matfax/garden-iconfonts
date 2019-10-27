@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "config:base",
+    ":semanticCommitType(chore)"
+  ],
+  "separateMinorPatch": true,
+  "patch": {
+    "automerge": true,
+    "labels": ["dependencies"]
+  },
+  "pin": {
+    "automerge": true
+  },
+  "lockFileMaintenance": {
+    "automerge": true
+  },
+  "pipenv": {
+    "enabled": true
+  },
+  "vulnerabilityAlerts": {
+    "labels": ["security"]
+  }
+}

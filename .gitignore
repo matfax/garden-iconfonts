@@ -8,3 +8,6 @@
 *.css~
 !.gitignore
 *.profile
+*.fontd
+fonts/
+.idea/

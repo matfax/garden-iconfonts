@@ -5,7 +5,7 @@ Kivy-iconfonts
 Simple helper functions to make easier to use icon fonts in Labels and derived
 widgets.
 """
-from .iconfonts import *
+from kivysome.iconfonts import *
 
 
 if __name__ == '__main__':
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     from os.path import join, dirname
 
     kv = """
-#: import icon iconfonts.icon
+#: import icon kivysome.icon
 BoxLayout:
     Button:
         markup: True
@@ -51,8 +51,8 @@ BoxLayout:
             PopMatrix
     """
 
-    register('default_font', 'iconfont_sample.ttf',
-             join(dirname(__file__), 'iconfont_sample.fontd'))
+    register('default_font', '../tests/iconfont_sample.ttf',
+             join(dirname(__file__), '../tests/iconfont_sample.fontd'))
 
     root = Builder.load_string(kv)
     an = Animation(p=360, duration=2) + Animation(p=0, duration=0)

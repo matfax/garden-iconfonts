@@ -1,0 +1,30 @@
+---
+version: 2.1
+
+orbs:
+  python: broadinstitute/bits-python@0.2.0
+workflows:
+  main:
+    jobs:
+      - python/run-tests:
+          name: tests-3-7
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+          version: '3.7'
+      - python/run-tests:
+          name: tests-3-8
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+          version: '3.8'
+      - python/deploy:
+          version: '3.7'
+          verify_tag: false
+          context: pypi
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+          requires: [tests-3-7, tests-3-8]

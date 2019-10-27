@@ -1,12 +1,8 @@
-import re
 import json
-from collections import OrderedDict
-from kivy.compat import PY2
+import re
+from mutapath import Path
 
-_register = OrderedDict()
-
-if not PY2:
-    unichr = chr
+_register = dict()
 
 
 def register(name, ttf_fname, fontd_fname):
@@ -15,9 +11,9 @@ def register(name, ttf_fname, fontd_fname):
     :param ttf_fname: ttf filename (path)
     :param fontd_fname: fontdic filename. (See create_fontdic)
     """
-    with open(fontd_fname, 'r') as f:
-        fontd = json.loads(f.read())
-        _register[name] = ttf_fname, fontd_fname, fontd
+    font_file = Path(fontd_fname)
+    fontd = json.loads(font_file.text)
+    _register[name] = ttf_fname, fontd_fname, fontd
 
 
 def icon(code, size=None, color=None, font_name=None):
@@ -28,9 +24,9 @@ def icon(code, size=None, color=None, font_name=None):
     :param font_name: Registered font name. If None first one is used.
     :returns: icon text (with markups)
     """
-    font = list(_register.keys())[0] if font_name is None else font_name
+    font = next(iter(_register.keys())) if font_name is None else font_name
     font_data = _register[font]
-    s = "[font=%s]%s[/font]" % (font_data[0], unichr(font_data[2][code]))
+    s = "[font=%s]%s[/font]" % (font_data[0], chr(font_data[2][code]))
     if size is not None:
         s = "[size=%s]%s[/size]" % (size, s)
     if color is not None:
@@ -39,19 +35,23 @@ def icon(code, size=None, color=None, font_name=None):
     return s
 
 
-def create_fontdict_file(css_fname, output_fname):
+def create_fontdict_file(css_fname, output_fname=""):
     """Creates a font dictionary file. Basically creates a dictionary filled
     with icon_code: unicode_value entries
     obtained from a CSS file.
     :param css_fname: CSS filename where font's rules are declared.
     :param output_fname: Fontd file destination
     """
-    with open(css_fname, 'r') as f:
-        data = f.read()
-        res = _parse(data)
-        with open(output_fname, 'w') as o:
-            o.write(json.dumps(res))
-        return res
+    css_file = Path(css_fname)
+    if output_fname:
+        output_file = Path(output_fname)
+    else:
+        output_file = css_file.with_suffix(".fontd")
+
+    res = _parse(css_file.read_text("utf-8"))
+    output_file.write_text(json.dumps(res))
+
+    return res
 
 
 def _parse(data):
@@ -72,6 +72,7 @@ def _parse(data):
             value = int(data[start:end].split('"')[1], 0)
         except (IndexError, ValueError):
             continue
+        if key.startswith("fa-"):
+            _, key = key.split("-", 1)
         res[key] = value
     return res
-
