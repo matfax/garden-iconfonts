@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e1e46aff5449ac7448ce3e1bc64c72b1082485a2bdc55f0d81502976e99e4009"
+            "sha256": "f3260f9c2ecc0e2f286f3118f42dcd15296edd88a6be064c6fa5ab7d3c9778ba"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -338,20 +338,6 @@
             ],
             "index": "pypi",
             "version": "==1.11.1"
-        },
-        "kivy-deps-sdl2": {
-            "hashes": [
-                "sha256:053f26e8c05d5545bdbc7eeb8c450b8e4410ee355792e9345af536110fe247e2",
-                "sha256:1b987bdd4fbbcb31baf0d7fc9584ad99912179b8968311bb7e30fbeb14e98e0d",
-                "sha256:228128cdd8112dc7505ac43027a770476e9ef282e0b84ca68037133cd025960b",
-                "sha256:2c2fd5a12a7a9afe3bb962b273561099a180edae91bb9c8f8386b72253fcae4a",
-                "sha256:5ce23f1a3286d6288751a12b0eaefd02f947ea101bb807e9781b964e496fc3f3",
-                "sha256:7928746eaed51944c10d1bb36fcefebe3d1aff1b97ba32359c2c97ba74707e1b",
-                "sha256:96e1fa89fd8b5351f2d3c26bbffd50df8d554b03fba4025ecc941d773d241698",
-                "sha256:c3ace0ddde0e59cdcaf260eda1daa0c05ca9bf8cd0c4ea404539de25a5dcaec7"
-            ],
-            "index": "pypi",
-            "version": "==0.1.22"
         },
         "kivy-garden": {
             "hashes": [
