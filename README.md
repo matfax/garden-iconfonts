@@ -37,7 +37,7 @@ In your `.kv` file or string, reference the short Font Awesome (i.e., without `f
 #: import icon kivysome.icon
 Button:
     markup: True # Always turn markup on
-    text: "%s"%(icon('comment'))
+    text: "%s Comment" % icon('comment', 24)
 ```
 
 Check the `examples` folder for more insight.
