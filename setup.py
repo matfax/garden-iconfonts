@@ -18,7 +18,10 @@ def get_dependencies(pipfile_lock: Optional[str] = None, develop: bool = False):
 setup(
     name="kivysome",
     packages=find_packages(),
-    version_format="{tag}",
+    version_config={
+        "version_format": "{tag}",
+        "starting_version": "0.1.0"
+    },
     license="MIT",
     description="Font Awesome 5 Icons for Kivy",
     long_description=Path("README.md").read_text(),
@@ -27,7 +30,7 @@ setup(
     author_email="matthias.fax@gmail.com",
     url="https://github.com/matfax/kivysome",
     keywords=["kivy", "fa", "font", "awesome", "icons"],
-    setup_requires=["setuptools-git-version"],
+    setup_requires=["better-setuptools-git-version"],
     install_requires=get_dependencies(),
     classifiers=[
         "Development Status :: 4 - Beta",

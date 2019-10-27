@@ -12,7 +12,6 @@ coverage = "==4.5.4"
 codecov = "==2.0.15"
 wheel = "==0.33.6"
 setuptools = "==41.4.0"
-setuptools-git-version = "==1.0.3"
 
 [packages]
 mutapath = "==0.14.0"

@@ -1,4 +1,5 @@
 import unittest
+
 import kivysome
 from kivysome import iconfonts
 
@@ -13,6 +14,10 @@ class Tests(unittest.TestCase):
     def test_kivy_awesome_wrong_url(self):
         with self.assertRaises(ValueError):
             kivysome.enable("https://google.com")
+
+    def test_kivy_awesome_invalid_url(self):
+        with self.assertRaises(ValueError):
+            kivysome.enable("invalid")
 
     def test_create_fontdict_file(self):
         res = iconfonts.create_fontdict_file("tests/iconfont_sample.css",
