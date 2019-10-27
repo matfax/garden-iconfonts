@@ -1,9 +1,11 @@
 import re
 from enum import Enum
+
 import urllib3
 from lastversion import lastversion
 from mutapath import Path
 from remotezip import RemoteZip
+from urllib3.exceptions import MaxRetryError
 
 from kivysome.iconfonts import register, create_fontdict_file
 
@@ -29,9 +31,12 @@ def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, 
     font_folder = Path(font_folder)
 
     pool_manager = urllib3.PoolManager()
-    result = pool_manager.request("GET", url)
+    try:
+        result = pool_manager.request("GET", url)
+    except MaxRetryError as e:
+        raise ValueError("the given link could not be accessed") from e
     if not result.status == 200:
-        raise ValueError("the given link could not be accessed")
+        raise ValueError("the given link did not return a correct status code")
     content = result.data.decode('utf-8')
     if '"license":"free"' not in content:
         raise ValueError("the given link is not referencing a free version of a Font Awesome kit")
