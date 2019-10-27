@@ -5,14 +5,15 @@ Kivy-iconfonts
 Simple helper functions to make easier to use icon fonts in Labels and derived
 widgets.
 """
-from kivysome.iconfonts import *
+from os.path import join, dirname
 
+from kivy.animation import Animation
+from kivy.base import runTouchApp
+from kivy.lang import Builder
+
+from kivysome.iconfonts import register
 
 if __name__ == '__main__':
-    from kivy.lang import Builder
-    from kivy.base import runTouchApp
-    from kivy.animation import Animation
-    from os.path import join, dirname
 
     kv = """
 #: import icon kivysome.icon

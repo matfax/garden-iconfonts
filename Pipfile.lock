@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "16a4cbe21af950471f7a175e022b37fcd33a77dbaca5aa81807b3c84e4013377"
+            "sha256": "e1e46aff5449ac7448ce3e1bc64c72b1082485a2bdc55f0d81502976e99e4009"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -338,34 +338,6 @@
             ],
             "index": "pypi",
             "version": "==1.11.1"
-        },
-        "kivy-deps-glew": {
-            "hashes": [
-                "sha256:1e28e40017af9d081fc0fc95b4fadaf31d15e9f63478dcee1c4257d67079894e",
-                "sha256:45aa7f0e8d9bcf5fc1810c9c38bc20edf7dee61df81ecf62102e0f84153f924a",
-                "sha256:6bb435620c3187d2c61054adb9ec277ed487256b457a0a7b1491bc0cb7247e18",
-                "sha256:92e72fa2c425887987d1aa861c99537033dc20d68ae1c54864871f0401682586",
-                "sha256:ab81783a82bef88a8d2bcf8a93bc21df6b8b0db6ee551eb802727d18f9074b17",
-                "sha256:c843104690c0c8f3a58105c53c57f31506f6f90562c18de00bd19317cc1045a7",
-                "sha256:ee8ab67abb2c98d84feede657cae472e7723e529af07394244bdd33caafb1a38",
-                "sha256:ef1116d99bd9cc737cb8c0e13e676955c17d6e4d6d1af5cfccef089a430071bb"
-            ],
-            "index": "pypi",
-            "version": "==0.1.12"
-        },
-        "kivy-deps-gstreamer": {
-            "hashes": [
-                "sha256:0d9598d2d31c0e780adf4b767fa3a691123621fd0ffef94b83cf82c2da84341b",
-                "sha256:309eca64dee5939f16f8465e5cbb08bdde7c90ded1af6a00690c7e928326af79",
-                "sha256:4d996377111e854b3dea90846f9b2f98766a44529fd8b72125e18c552381d928",
-                "sha256:4f2ddd61d185310258d338ae80a646df7822efdd7d67e57f49dc7b87555c5d7e",
-                "sha256:6fa9f76afe600baa221abee31ce7dc63e653d0affe0f6c558bfc4f35af96396f",
-                "sha256:739cd331b9f33a822d700273674a79a3157054e9358a01a0d553f094a5f4a8c9",
-                "sha256:c29cfc63fe70a58dad889e631f1ba4711c9ea80103f2b2b8d670a97f093076c8",
-                "sha256:c4709765e2b17c6c96b46a92207b0457def147544d825654077603eaf0d424de"
-            ],
-            "index": "pypi",
-            "version": "==0.1.17"
         },
         "kivy-deps-sdl2": {
             "hashes": [
