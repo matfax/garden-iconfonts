@@ -15,7 +15,7 @@ setuptools = "==41.4.0"
 twine = "==2.0.0"
 
 [packages]
-mutapath = "==0.15.1"
+mutapath = "==0.15.4"
 urllib3 = "==1.25.6"
 remotezip = "==0.9.2"
 lastversion = "==0.2.4"
