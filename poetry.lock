@@ -150,6 +150,14 @@ version = "0.15.2"
 
 [[package]]
 category = "main"
+description = "Universal feed parser, handles RSS 0.9x, RSS 1.0, RSS 2.0, CDF, Atom 0.3, and Atom 1.0 feeds"
+name = "feedparser"
+optional = false
+python-versions = "*"
+version = "5.2.1"
+
+[[package]]
+category = "main"
 description = "A platform independent file lock."
 name = "filelock"
 optional = false
@@ -249,18 +257,21 @@ description = "A CLI tool to fetch last GitHub release version"
 name = "lastversion"
 optional = false
 python-versions = "*"
-version = "0.2.4"
+version = "1.1.4"
 
 [package.dependencies]
+PyYAML = "*"
 appdirs = "*"
 cachecontrol = "*"
+feedparser = "*"
 lockfile = "*"
 packaging = "*"
 python-dateutil = "*"
-requests = "*"
+requests = ">=2.6.1"
+tqdm = "*"
 
 [package.extras]
-tests = ["requests", "packaging", "cachecontrol", "lockfile", "appdirs", "python-dateutil", "pytest (>=4.4.0)", "flake8", "pytest-xdist"]
+tests = ["requests (>=2.6.1)", "packaging", "cachecontrol", "lockfile", "appdirs", "python-dateutil", "feedparser", "pyyaml", "tqdm", "pytest (>=4.4.0)", "flake8", "pytest-xdist"]
 
 [[package]]
 category = "main"
@@ -436,7 +447,7 @@ version = "2.8.1"
 six = ">=1.5"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "YAML parser and emitter for Python"
 name = "pyyaml"
 optional = false
@@ -541,6 +552,17 @@ python-versions = "*"
 version = "0.10.0"
 
 [[package]]
+category = "main"
+description = "Fast, Extensible Progress Meter"
+name = "tqdm"
+optional = false
+python-versions = ">=2.6, !=3.0.*, !=3.1.*"
+version = "4.45.0"
+
+[package.extras]
+dev = ["py-make (>=0.1.0)", "twine", "argopt", "pydoc-markdown"]
+
+[[package]]
 category = "dev"
 description = "a fork of Python 2 and 3 ast modules with type comment support"
 name = "typed-ast"
@@ -594,7 +616,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "57ac141809edcb7d4a5ceeeffc889f80949e0c12039af45678c4b260ca847af3"
+content-hash = "cb1c03679963832ff1569a62d3f9b04fd3b4b8a8a21da43e40c6f5d5e2386cdb"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -684,6 +706,11 @@ docutils = [
     {file = "docutils-0.15.2-py3-none-any.whl", hash = "sha256:6c4f696463b79f1fb8ba0c594b63840ebd41f059e92b31957c46b74a4599b6d0"},
     {file = "docutils-0.15.2.tar.gz", hash = "sha256:a2aeea129088da402665e92e0b25b04b073c04b2dce4ab65caaa38b7ce2e1a99"},
 ]
+feedparser = [
+    {file = "feedparser-5.2.1.tar.bz2", hash = "sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02"},
+    {file = "feedparser-5.2.1.tar.gz", hash = "sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9"},
+    {file = "feedparser-5.2.1.zip", hash = "sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c"},
+]
 filelock = [
     {file = "filelock-3.0.12-py3-none-any.whl", hash = "sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836"},
     {file = "filelock-3.0.12.tar.gz", hash = "sha256:18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59"},
@@ -730,7 +757,8 @@ kivy-garden = [
     {file = "kivy-garden-0.1.4.tar.gz", hash = "sha256:c256f42788421273a08fbb0a228f0fb0e80dd86b629fb8c0920507f645be6c72"},
 ]
 lastversion = [
-    {file = "lastversion-0.2.4.tar.gz", hash = "sha256:9aa742683c586c9d56ffd8870c467f806b8d706d9138b8ed24a9a3d5579ddf80"},
+    {file = "lastversion-1.1.4-py3-none-any.whl", hash = "sha256:ebc6319e1d1158ff1801169b409690dc044bb90ef53eeb1b0e6be6d61d3e6600"},
+    {file = "lastversion-1.1.4.tar.gz", hash = "sha256:2c93d27670ff07711aaaf007c7d32ad19b8bfdf880fbdc9a8c5ba9983e03269a"},
 ]
 lockfile = [
     {file = "lockfile-0.12.2-py2.py3-none-any.whl", hash = "sha256:6c3cb24f344923d30b2785d5ad75182c8ea7ac1b6171b08657258ec7429d50fa"},
@@ -893,6 +921,10 @@ toml = [
     {file = "toml-0.10.0-py2.7.egg", hash = "sha256:f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"},
     {file = "toml-0.10.0-py2.py3-none-any.whl", hash = "sha256:235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e"},
     {file = "toml-0.10.0.tar.gz", hash = "sha256:229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c"},
+]
+tqdm = [
+    {file = "tqdm-4.45.0-py2.py3-none-any.whl", hash = "sha256:ea9e3fd6bd9a37e8783d75bfc4c1faf3c6813da6bd1c3e776488b41ec683af94"},
+    {file = "tqdm-4.45.0.tar.gz", hash = "sha256:00339634a22c10a7a22476ee946bbde2dbe48d042ded784e4d88e0236eca5d81"},
 ]
 typed-ast = [
     {file = "typed_ast-1.4.0-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:262c247a82d005e43b5b7f69aff746370538e176131c32dda9cb0f324d27141e"},
