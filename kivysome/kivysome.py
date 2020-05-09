@@ -28,6 +28,7 @@ def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, 
     :param group: a valid ::class:`~kivysome.FontGroup`
     :param force: to ignore the existing files and refetch them by force
     :param font_folder: to folder to put the font files, "fonts" is used as default
+    :param cached: to use a cached kit file if available (required for offline use)
     """
     font_folder = Path(font_folder)
     font_folder.mkdir_p()
