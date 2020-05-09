@@ -31,7 +31,7 @@ def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, 
     """
     font_folder = Path(font_folder)
     font_folder.mkdir_p()
-    cache_file = font_folder / hashlib.sha1(url.encode("utf-8")).hexdigest()
+    cache_file = font_folder / hashlib.sha256(url.encode("utf-8")).hexdigest()
     
     content = None
     if cached and cache_file.isfile():
