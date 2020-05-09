@@ -30,8 +30,8 @@ def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, 
     :param font_folder: to folder to put the font files, "fonts" is used as default
     """
     font_folder = Path(font_folder)
-
-    cache_file = font_folder / hashlib.sha1().update(url).hexdigest()
+    font_folder.mkdir_p()
+    cache_file = font_folder / hashlib.sha1(url.encode("utf-8")).hexdigest()
     
     content = None
     if cached and cache_file.isfile():
@@ -46,7 +46,7 @@ def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, 
         if not result.status == 200:
             raise ValueError("the given link did not return a correct status code")
         content = result.data.decode('utf-8')
-        with open(cache_file, "r") as f:
+        with open(cache_file, "w") as f:
             f.write(content)
         
     if '"license":"free"' not in content:
