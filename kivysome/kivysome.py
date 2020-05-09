@@ -2,6 +2,7 @@ import re
 from enum import Enum
 
 import urllib3
+import hashlib
 from lastversion import lastversion
 from mutapath import Path
 from remotezip import RemoteZip
@@ -18,7 +19,7 @@ class FontGroup(Enum):
     BRANDS = "brands"
 
 
-def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, font_folder=Path.getcwd() / "fonts"):
+def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, font_folder=Path.getcwd() / "fonts", cached: bool = False):
     """
     All-in-one function to deploy free Font Awesome fonts.
     It fetches the font file with the version from the given Font Awesome kit script file,
@@ -30,14 +31,24 @@ def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, 
     """
     font_folder = Path(font_folder)
 
-    pool_manager = urllib3.PoolManager()
-    try:
-        result = pool_manager.request("GET", url)
-    except MaxRetryError as e:
-        raise ValueError("the given link could not be accessed") from e
-    if not result.status == 200:
-        raise ValueError("the given link did not return a correct status code")
-    content = result.data.decode('utf-8')
+    cache_file = font_folder / hashlib.sha1().update(url).hexdigest()
+    
+    content = None
+    if cached and cache_file.isfile():
+        with open(cache_file) as f:
+            content = f.read()
+    else:
+        pool_manager = urllib3.PoolManager()
+        try:
+            result = pool_manager.request("GET", url)
+        except MaxRetryError as e:
+            raise ValueError("the given link could not be accessed") from e
+        if not result.status == 200:
+            raise ValueError("the given link did not return a correct status code")
+        content = result.data.decode('utf-8')
+        with open(cache_file, "r") as f:
+            f.write(content)
+        
     if '"license":"free"' not in content:
         raise ValueError("the given link is not referencing a free version of a Font Awesome kit")
     version_match = _VERSION_MATCHER.match(content)
