@@ -149,6 +149,14 @@ version = "0.16"
 
 [[package]]
 category = "main"
+description = "Universal feed parser, handles RSS 0.9x, RSS 1.0, RSS 2.0, CDF, Atom 0.3, and Atom 1.0 feeds"
+name = "feedparser"
+optional = false
+python-versions = "*"
+version = "5.2.1"
+
+[[package]]
+category = "main"
 description = "A platform independent file lock."
 name = "filelock"
 optional = false
@@ -248,18 +256,20 @@ description = "A CLI tool to fetch last GitHub release version"
 name = "lastversion"
 optional = false
 python-versions = "*"
-version = "0.2.5"
+version = "1.0.0"
 
 [package.dependencies]
+PyYAML = "*"
 appdirs = "*"
 cachecontrol = "*"
+feedparser = "*"
 lockfile = "*"
 packaging = "*"
 python-dateutil = "*"
 requests = "*"
 
 [package.extras]
-tests = ["requests", "packaging", "cachecontrol", "lockfile", "appdirs", "python-dateutil", "pytest (>=4.4.0)", "flake8", "pytest-xdist"]
+tests = ["requests", "packaging", "cachecontrol", "lockfile", "appdirs", "python-dateutil", "feedparser", "pyyaml", "pytest (>=4.4.0)", "flake8", "pytest-xdist"]
 
 [[package]]
 category = "main"
@@ -436,7 +446,7 @@ version = "2.8.1"
 six = ">=1.5"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "YAML parser and emitter for Python"
 name = "pyyaml"
 optional = false
@@ -602,7 +612,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "cf73f3904e8dfc0a62228a032eeb3b377742310dc31cad05694f2d83dfb0f0c4"
+content-hash = "9b7cda3a6b13537f55843ced3699e562a8d9e55f55555b99e31f6f7701ae75ce"
 lock-version = "1.0"
 python-versions = "^3.7"
 
@@ -694,6 +704,11 @@ docutils = [
     {file = "docutils-0.16-py2.py3-none-any.whl", hash = "sha256:0c5b78adfbf7762415433f5515cd5c9e762339e23369dbe8000d84a4bf4ab3af"},
     {file = "docutils-0.16.tar.gz", hash = "sha256:c2de3a60e9e7d07be26b7f2b00ca0309c207e06c100f9cc2a94931fc75a478fc"},
 ]
+feedparser = [
+    {file = "feedparser-5.2.1.tar.bz2", hash = "sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02"},
+    {file = "feedparser-5.2.1.tar.gz", hash = "sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9"},
+    {file = "feedparser-5.2.1.zip", hash = "sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c"},
+]
 filelock = [
     {file = "filelock-3.0.12-py3-none-any.whl", hash = "sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836"},
     {file = "filelock-3.0.12.tar.gz", hash = "sha256:18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59"},
@@ -740,7 +755,7 @@ kivy-garden = [
     {file = "kivy-garden-0.1.4.tar.gz", hash = "sha256:c256f42788421273a08fbb0a228f0fb0e80dd86b629fb8c0920507f645be6c72"},
 ]
 lastversion = [
-    {file = "lastversion-0.2.5.tar.gz", hash = "sha256:bacb2384502a28fce18c42daf97db0a9ab83571c3648451ddaf7d1231ea31ec7"},
+    {file = "lastversion-1.0.0.tar.gz", hash = "sha256:fb8e3b711f0da618bad9afa3eeda30dbfec4d0694450c7a92ffc2ebf958a9f0c"},
 ]
 lockfile = [
     {file = "lockfile-0.12.2-py2.py3-none-any.whl", hash = "sha256:6c3cb24f344923d30b2785d5ad75182c8ea7ac1b6171b08657258ec7429d50fa"},
