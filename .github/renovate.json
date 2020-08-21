@@ -17,5 +17,5 @@
     "labels": ["security"]
   },
   "labels": ["dependencies"],
-  "includeForks": true
+  "renovateFork": true
 }
