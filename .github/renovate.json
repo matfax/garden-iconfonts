@@ -16,5 +16,6 @@
   "vulnerabilityAlerts": {
     "labels": ["security"]
   },
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "includeForks": true
 }
