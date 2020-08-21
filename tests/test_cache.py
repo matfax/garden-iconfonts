@@ -4,7 +4,7 @@ import kivysome
 import socket
 
 
-class Tests(unittest.TestCase):
+class CacheTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
