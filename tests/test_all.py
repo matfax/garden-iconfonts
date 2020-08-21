@@ -1,3 +1,4 @@
+import time
 import unittest
 
 import kivysome
@@ -5,6 +6,10 @@ from kivysome import iconfonts
 
 
 class Tests(unittest.TestCase):
+
+    def setUp(self):
+        # Avoid IP blocks from GitHub due to overload
+        time.sleep(1)
 
     def test_kivy_awesome_regular(self):
         # DO NOT COPY THIS LINK!

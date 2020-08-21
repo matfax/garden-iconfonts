@@ -35,7 +35,7 @@ def enable(source: str, group: FontGroup = FontGroup.REGULAR, force: bool = Fals
     font_folder = Path(font_folder)
     font_folder.mkdir_p()
 
-    if semver.VersionInfo.isvalid(source):
+    if semver.VersionInfo.isvalid(source) or source == LATEST:
         version = source
     else:
         pool_manager = urllib3.PoolManager()
