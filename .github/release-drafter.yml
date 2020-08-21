@@ -1,4 +1,3 @@
-GoLandIntelliJ IDEA   
 name-template: 'Version $RESOLVED_VERSION'
 tag-template: '$RESOLVED_VERSION'
 categories:
