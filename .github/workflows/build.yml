@@ -13,6 +13,7 @@ jobs:
       max-parallel: 1
       matrix:
         python-version: [3.7]
+        poetry-version: [1.0]
         os: [ubuntu-latest,  windows-latest]
     name: python ${{ matrix.python-version }}
     steps:
@@ -35,18 +36,30 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             ${{ runner.OS }}-${{ matrix.python-version }}-poetry
-      - name: installing poetry
-        run: |
-          pip install poetry
-          pip install poetry-dynamic-versioning
       - name: installing dependencies
-        run: poetry install
+        uses: abatilo/actions-poetry@v1.11.0
+        with:
+          python_version: ${{ matrix.python-version }}
+          poetry_version: ${{ matrix.poetry-version }}
+          args: install -n -vv --no-ansi
       - name: running tests
-        run: poetry run green -vv
+        uses: abatilo/actions-poetry@v1.11.0
+        with:
+          python_version: ${{ matrix.python-version }}
+          poetry_version: ${{ matrix.poetry-version }}
+          args: run green -vv
       - name: building
-        run: poetry build
+        uses: abatilo/actions-poetry@v1.11.0
+        with:
+          python_version: ${{ matrix.python-version }}
+          poetry_version: ${{ matrix.poetry-version }}
+          args: build -n -vv --no-ansi
       - name: generate coverage xml
-        run: poetry run coverage xml
+        uses: abatilo/actions-poetry@v1.11.0
+        with:
+          python_version: ${{ matrix.python-version }}
+          poetry_version: ${{ matrix.poetry-version }}
+          args: run coverage xml
       - name: uploading coverage to codecov
         uses: codecov/codecov-action@v1
         with:
