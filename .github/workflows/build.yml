@@ -16,7 +16,7 @@ jobs:
         os: [ubuntu-latest,  windows-latest]
     name: python ${{ matrix.python-version }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.3.2
       - name: setting up python ${{ matrix.python-version }}
         uses: actions/setup-python@v2.1.2
         with:
