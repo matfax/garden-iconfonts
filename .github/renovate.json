@@ -5,18 +5,16 @@
   ],
   "separateMinorPatch": true,
   "patch": {
-    "automerge": true,
-    "labels": ["dependencies"]
+    "automerge": true
   },
   "pin": {
-    "automerge": true,
-    "labels": ["dependencies"]
+    "automerge": true
   },
   "lockFileMaintenance": {
-    "automerge": true,
-    "labels": ["dependencies"]
+    "automerge": true
   },
   "vulnerabilityAlerts": {
     "labels": ["security"]
-  }
+  },
+  "labels": ["dependencies"]
 }
