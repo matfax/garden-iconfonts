@@ -23,14 +23,14 @@ jobs:
       - name: caching pip storage
         uses: actions/cache@v2
         with:
-          path: ${{ env.HOME }}/.cache/pip
+          path: $HOME/.cache/pip
           key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             ${{ runner.OS }}-${{ matrix.python-version }}-pip
       - name: caching poetry environment
         uses: actions/cache@v2
         with:
-          path: ${{ env.HOME }}/.cache/pypoetry
+          path: $HOME/.cache/pypoetry
           key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             ${{ runner.OS }}-${{ matrix.python-version }}-poetry
