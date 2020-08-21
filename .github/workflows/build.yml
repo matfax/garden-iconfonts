@@ -13,11 +13,14 @@ jobs:
       max-parallel: 1
       matrix:
         python-version: [3.7]
-        poetry-version: [1.0]
         os: [ubuntu-latest,  windows-latest]
     name: python ${{ matrix.python-version }}
     steps:
       - uses: actions/checkout@v1
+      - name: setting up python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: caching pip storage
         uses: actions/cache@v2
         with:
@@ -32,30 +35,18 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             ${{ runner.OS }}-${{ matrix.python-version }}-poetry
+      - name: installing poetry
+        run: |
+          pip install poetry
+          pip install poetry-dynamic-versioning
       - name: installing dependencies
-        uses: abatilo/actions-poetry@v1.11.0
-        with:
-          python_version: ${{ matrix.python-version }}
-          poetry_version: ${{ matrix.poetry-version }}
-          args: install -n -vv --no-ansi
+        run: poetry install -n -vv --no-ansi
       - name: running tests
-        uses: abatilo/actions-poetry@v1.11.0
-        with:
-          python_version: ${{ matrix.python-version }}
-          poetry_version: ${{ matrix.poetry-version }}
-          args: run green -vv
+        run: poetry run green -vv
       - name: building
-        uses: abatilo/actions-poetry@v1.11.0
-        with:
-          python_version: ${{ matrix.python-version }}
-          poetry_version: ${{ matrix.poetry-version }}
-          args: build -n -vv --no-ansi
+        run: poetry build -n -vv --no-ansi
       - name: generate coverage xml
-        uses: abatilo/actions-poetry@v1.11.0
-        with:
-          python_version: ${{ matrix.python-version }}
-          poetry_version: ${{ matrix.poetry-version }}
-          args: run coverage xml
+        run: poetry run coverage xml
       - name: uploading coverage to codecov
         uses: codecov/codecov-action@v1
         with:
