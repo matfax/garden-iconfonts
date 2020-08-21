@@ -8,11 +8,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.7, 3.8]
+        python-version: [3.7]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     name: python ${{ matrix.python-version }}
     steps:
       - uses: actions/checkout@v1
@@ -24,14 +25,14 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.OS }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             ${{ runner.OS }}-${{ matrix.python-version }}-pip
       - name: caching poetry environment
         uses: actions/cache@v2
         with:
           path: ~/.cache/pypoetry
-          key: ${{ runner.OS }}-${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             ${{ runner.OS }}-${{ matrix.python-version }}-poetry
       - name: installing poetry
@@ -52,4 +53,4 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
           flags: unittests
-          name: python ${{ matrix.python-version }}
+          name: python ${{ matrix.python-version }} on ${{ runner.os }}
