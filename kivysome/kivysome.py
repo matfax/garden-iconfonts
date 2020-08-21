@@ -2,15 +2,16 @@ import re
 from enum import Enum
 
 import urllib3
-import hashlib
+import semver
 from lastversion import lastversion
 from mutapath import Path
-from remotezip import RemoteZip
+from remotezip import RemoteZip, RemoteIOError
 from urllib3.exceptions import MaxRetryError
 
 from kivysome.iconfonts import register, create_fontdict_file
 
 _VERSION_MATCHER = re.compile(r'.*"version":"([a-zA-Z0-9.]+)"')
+LATEST = "latest"
 
 
 class FontGroup(Enum):
@@ -19,47 +20,46 @@ class FontGroup(Enum):
     BRANDS = "brands"
 
 
-def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, font_folder=Path.getcwd() / "fonts", cached: bool = False):
+def enable(source: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, font_folder=Path.getcwd() / "fonts"):
     """
     All-in-one function to deploy free Font Awesome fonts.
     It fetches the font file with the version from the given Font Awesome kit script file,
     converts the css and registers it as primary font.
-    :param url: the script for your font kit from https://fontawesome.com/kits
+    :param source: the script for your font kit from https://fontawesome.com/kits
+        OR a Font Awesome version
+        OR `~kivysome.LATEST`
     :param group: a valid ::class:`~kivysome.FontGroup`
     :param force: to ignore the existing files and refetch them by force
     :param font_folder: to folder to put the font files, "fonts" is used as default
-    :param cached: to use a cached kit file if available (required for offline use)
     """
     font_folder = Path(font_folder)
     font_folder.mkdir_p()
-    cache_file = font_folder / hashlib.sha256(url.encode("utf-8")).hexdigest()
-    
-    content = None
-    if cached and cache_file.isfile():
-        with open(cache_file) as f:
-            content = f.read()
+
+    if semver.VersionInfo.isvalid(source):
+        version = source
     else:
         pool_manager = urllib3.PoolManager()
         try:
-            result = pool_manager.request("GET", url)
+            result = pool_manager.request("GET", source)
         except MaxRetryError as e:
             raise ValueError("the given link could not be accessed") from e
         if not result.status == 200:
             raise ValueError("the given link did not return a correct status code")
         content = result.data.decode('utf-8')
-        with open(cache_file, "w") as f:
-            f.write(content)
-        
-    if '"license":"free"' not in content:
-        raise ValueError("the given link is not referencing a free version of a Font Awesome kit")
-    version_match = _VERSION_MATCHER.match(content)
-    if version_match is None:
-        raise ValueError("no version could be parsed from the given link")
 
-    version = version_match.group(1)
-    if version == "latest":
+        if '"license":"free"' not in content:
+            raise ValueError("the given link is not referencing a free version of a Font Awesome kit")
+        version_match = _VERSION_MATCHER.match(content)
+        if version_match is None:
+            raise ValueError("no version could be parsed from the given link")
+
+        version = version_match.group(1)
+
+    if version == LATEST:
         repo = "FortAwesome/Font-Awesome"
         version = lastversion.latest(repo, 'version')
+    elif not semver.VersionInfo.isvalid(version):
+        raise ValueError(f"matched version {version} is no valid semantic version")
 
     download_link = f"https://use.fontawesome.com/releases/v{version}/fontawesome-free-{version}-web.zip"
 
@@ -69,35 +69,42 @@ def enable(url: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, 
 
     if force or not ttf_local.isfile() or not css_local.isfile():
 
-        with RemoteZip(download_link) as remote_zip:
-            ttf_file: str = ""
-            css_file: str = ""
-            for file_name in remote_zip.namelist():
-                if group.value in file_name and file_name.endswith(".ttf"):
-                    ttf_file = file_name
-                elif file_name.endswith("all.css"):
-                    css_file = file_name
+        try:
+            with RemoteZip(download_link) as remote_zip:
+                ttf_file: str = ""
+                css_file: str = ""
+                for file_name in remote_zip.namelist():
+                    if group.value in file_name and file_name.endswith(".ttf"):
+                        ttf_file = file_name
+                    elif file_name.endswith("all.css"):
+                        css_file = file_name
 
-            if not ttf_file or not css_file:
-                raise ValueError(f"the required font files could not be found in the remote zip file {download_link}")
+                if not ttf_file or not css_file:
+                    raise ValueError(
+                        f"the required font files could not be found in the remote zip file {download_link}"
+                    )
 
-            if ttf_local.exists():
-                if not remote_zip.getinfo(ttf_file).file_size == ttf_local.size:
-                    ttf_local.remove()
-            if css_local.exists():
-                if not remote_zip.getinfo(css_file).file_size == css_local.size:
-                    css_local.remove()
+                if ttf_local.exists():
+                    if not remote_zip.getinfo(ttf_file).file_size == ttf_local.size:
+                        ttf_local.remove()
+                if css_local.exists():
+                    if not remote_zip.getinfo(css_file).file_size == css_local.size:
+                        css_local.remove()
 
-            if not ttf_local.exists():
-                target_path = remote_zip.extract(ttf_file, font_folder)
-                Path(target_path).move(ttf_local)
-            if not css_local.exists():
-                target_path = remote_zip.extract(css_file, font_folder)
-                Path(target_path).move(css_local)
+                if not ttf_local.exists():
+                    target_path = remote_zip.extract(ttf_file, font_folder)
+                    Path(target_path).move(ttf_local)
+                if not css_local.exists():
+                    target_path = remote_zip.extract(css_file, font_folder)
+                    Path(target_path).move(css_local)
 
-            for tmp_folder in font_folder.dirs(f"*{version}*"):
-                if len(list(tmp_folder.walkfiles())) == 0:
-                    tmp_folder.rmtree()
+                for tmp_folder in font_folder.dirs(f"*{version}*"):
+                    if len(list(tmp_folder.walkfiles())) == 0:
+                        tmp_folder.rmtree()
+        except RemoteIOError as e:
+            raise ValueError(
+                f"the referenced Font Awesome version {version} could not be downloaded from GitHub"
+            ) from e
 
     if force or not fontd_local.isfile():
         create_fontdict_file(css_local, fontd_local)

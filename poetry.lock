@@ -483,6 +483,14 @@ socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7)", "win-inet-pton"]
 
 [[package]]
 category = "main"
+description = "Python helper for Semantic Versioning (http://semver.org/)"
+name = "semver"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "2.10.2"
+
+[[package]]
+category = "main"
 description = "Singleton metaclasses and singleton factories"
 name = "singletons"
 optional = false
@@ -594,7 +602,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "57ac141809edcb7d4a5ceeeffc889f80949e0c12039af45678c4b260ca847af3"
+content-hash = "a435a33d3c29c57bb404ec0a68b6b91ee17383879dbc69f6781136e75f70e694"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -869,6 +877,10 @@ remotezip = [
 requests = [
     {file = "requests-2.22.0-py2.py3-none-any.whl", hash = "sha256:9cf5292fcd0f598c671cfc1e0d7d1a7f13bb8085e9a590f48c010551dc6c4b31"},
     {file = "requests-2.22.0.tar.gz", hash = "sha256:11e007a8a2aa0323f5a921e9e6a2d7e4e67d9877e85773fba9ba6419025cbeb4"},
+]
+semver = [
+    {file = "semver-2.10.2-py2.py3-none-any.whl", hash = "sha256:21e80ca738975ed513cba859db0a0d2faca2380aef1962f48272ebf9a8a44bd4"},
+    {file = "semver-2.10.2.tar.gz", hash = "sha256:c0a4a9d1e45557297a722ee9bac3de2ec2ea79016b6ffcaca609b0bc62cf4276"},
 ]
 singletons = [
     {file = "singletons-0.2.3-py2.py3-none-any.whl", hash = "sha256:d1fa48be24bb301ae6f4a4be10f4a4535f4618b154aac26bb3b1d1e0996eb6cf"},

@@ -11,6 +11,12 @@ class Tests(unittest.TestCase):
         # Generate your own here: https://fontawesome.com/kits
         kivysome.enable("https://kit.fontawesome.com/23372bf9a2.js", force=True)
 
+    def test_kivy_awesome_version(self):
+        kivysome.enable("5.13.1", force=True)
+
+    def test_kivy_awesome_latest(self):
+        kivysome.enable(kivysome.LATEST, force=True)
+
     def test_kivy_awesome_wrong_url(self):
         with self.assertRaises(ValueError):
             kivysome.enable("https://google.com")
@@ -18,6 +24,14 @@ class Tests(unittest.TestCase):
     def test_kivy_awesome_invalid_url(self):
         with self.assertRaises(ValueError):
             kivysome.enable("invalid")
+
+    def test_kivy_awesome_wrong_version(self):
+        with self.assertRaises(ValueError):
+            kivysome.enable("11.11.11")
+
+    def test_kivy_awesome_invalid_version(self):
+        with self.assertRaises(ValueError):
+            kivysome.enable("v0")
 
     def test_create_fontdict_file(self):
         res = iconfonts.create_fontdict_file("tests/iconfont_sample.css",

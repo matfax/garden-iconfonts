@@ -9,16 +9,14 @@
     "labels": ["dependencies"]
   },
   "pin": {
-    "automerge": true
+    "automerge": true,
+    "labels": ["dependencies"]
   },
   "lockFileMaintenance": {
-    "automerge": true
-  },
-  "pipenv": {
-    "enabled": true
+    "automerge": true,
+    "labels": ["dependencies"]
   },
   "vulnerabilityAlerts": {
     "labels": ["security"]
-  },
-  "includeForks": true
+  }
 }
