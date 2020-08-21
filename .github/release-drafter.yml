@@ -20,10 +20,15 @@ version-resolver:
       - 'major'
   minor:
     labels:
-      - 'minor'
+      - 'feature'
+      - 'enhancement'
   patch:
     labels:
-      - 'patch'
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+      - 'chore'
+      - 'dependencies'
   default: patch
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 template: |
