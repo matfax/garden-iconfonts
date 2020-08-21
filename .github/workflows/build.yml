@@ -42,7 +42,7 @@ jobs:
       - name: installing dependencies
         run: poetry install
       - name: running tests
-        run: poetry run green
+        run: poetry run green -vv
       - name: building
         run: poetry build
       - name: generate coverage xml
