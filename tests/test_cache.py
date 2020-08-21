@@ -1,8 +1,14 @@
 import unittest
+from unittest import mock
 
 import kivysome
-import socket
 
+requests_gag = mock.patch(
+    'requests.Session.request',
+    mock.Mock(side_effect=RuntimeError(
+        'requests are blocked for testing purposes'
+    ))
+)
 
 class CacheTests(unittest.TestCase):
 
@@ -10,19 +16,18 @@ class CacheTests(unittest.TestCase):
     def setUpClass(cls):
         kivysome.enable("5.13.1", force=True)
 
-        def guard(*args, **kwargs):
-            raise ValueError("Socket is blocked for testing purposes!")
-        socket.socket = guard
-
     def test_kivy_awesome_regular_blocked(self):
-        with self.assertRaises(ValueError):
-            # DO NOT COPY THIS LINK!
-            # Generate your own here: https://fontawesome.com/kits
-            kivysome.enable("https://kit.fontawesome.com/23372bf9a2.js", force=True)
+        with requests_gag:
+            with self.assertRaises(RuntimeError):
+                # DO NOT COPY THIS LINK!
+                # Generate your own here: https://fontawesome.com/kits
+                kivysome.enable("https://kit.fontawesome.com/23372bf9a2.js", force=True)
 
     def test_kivy_awesome_cached_version(self):
-        kivysome.enable("5.13.1")
+        with requests_gag:
+            kivysome.enable("5.13.1")
 
     def test_kivy_awesome_version_blocked(self):
-        with self.assertRaises(ValueError):
-            kivysome.enable("5.13.1", force=True)
+        with requests_gag:
+            with self.assertRaises(RuntimeError):
+                kivysome.enable("5.13.1", force=True)
