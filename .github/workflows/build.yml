@@ -26,7 +26,7 @@ jobs:
       - name: "set pip cache dir"
         run: echo "::set-env name=pip-cache::$(pip cache dir)"
       - name: caching pip storage
-        uses: actions/cache@v2
+        uses: actions/cache@v2.0.0
         with:
           path: ${{ env.pip-cache }}
           key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
@@ -39,7 +39,7 @@ jobs:
       - name: "set poetry cache dir"
         run: echo "::set-env name=poetry-cache::$(poetry config cache-dir)"
       - name: caching poetry environment
-        uses: actions/cache@v2
+        uses: actions/cache@v2.0.0
         with:
           path: ${{ env.poetry-cache }}
           key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
@@ -54,7 +54,7 @@ jobs:
       - name: generate coverage xml
         run: poetry run coverage xml
       - name: uploading coverage to codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v1.0.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage.xml
