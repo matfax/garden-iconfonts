@@ -327,13 +327,13 @@ description = "mutable pathlib"
 name = "mutapath"
 optional = false
 python-versions = ">=3.7,<4.0"
-version = "0.16.0"
+version = "0.16.1"
 
 [package.dependencies]
 cached-property = "1.5.1"
 filelock = "3.0.12"
-path = ">=13.1.0,<14.0.0"
-singletons = "0.2.3"
+path = ">=13.1,<16.0"
+singletons = "0.2.5"
 
 [[package]]
 category = "main"
@@ -517,12 +517,12 @@ category = "main"
 description = "Singleton metaclasses and singleton factories"
 name = "singletons"
 optional = false
-python-versions = "*"
-version = "0.2.3"
+python-versions = ">=3.6,<4.0"
+version = "0.2.5"
 
 [package.extras]
-eventlet = ["eventlet"]
-gevent = ["gevent"]
+eventlet = ["eventlet (>=0.25.1,<0.26.0)"]
+gevent = ["gevent (>=1.4,<2.0)"]
 
 [[package]]
 category = "main"
@@ -841,8 +841,8 @@ msgpack = [
     {file = "msgpack-1.0.0.tar.gz", hash = "sha256:9534d5cc480d4aff720233411a1f765be90885750b07df772380b34c10ecb5c0"},
 ]
 mutapath = [
-    {file = "mutapath-0.16.0-py3-none-any.whl", hash = "sha256:26185caf009f4a4b48016113fda7dda5687f03184d8da8e771dada987c3bf5d6"},
-    {file = "mutapath-0.16.0.tar.gz", hash = "sha256:5ec3e31138cc03519477319d10c80670b2194d560b730b3b9ea08fe11ce9edae"},
+    {file = "mutapath-0.16.1-py3-none-any.whl", hash = "sha256:ffeecee2978aa8c89f882e0e13960559db58e33f12afd4ea8e86a1ab51f27b2c"},
+    {file = "mutapath-0.16.1.tar.gz", hash = "sha256:340ee269fd679fc97ab9325307cd0111d2b7f77ef67d9d4ab364ebf470e15e22"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
@@ -933,8 +933,8 @@ semver = [
     {file = "semver-2.10.2.tar.gz", hash = "sha256:c0a4a9d1e45557297a722ee9bac3de2ec2ea79016b6ffcaca609b0bc62cf4276"},
 ]
 singletons = [
-    {file = "singletons-0.2.3-py2.py3-none-any.whl", hash = "sha256:d1fa48be24bb301ae6f4a4be10f4a4535f4618b154aac26bb3b1d1e0996eb6cf"},
-    {file = "singletons-0.2.3.tar.gz", hash = "sha256:94b7e8a3edbae48e05f0ac960c6bc0aa7820702584732149ac73e5f81f23abfb"},
+    {file = "singletons-0.2.5-py3-none-any.whl", hash = "sha256:d367554d86865b50fff5bc59cdc3a7a2c50d370ca405d0fe4161073458ffc78c"},
+    {file = "singletons-0.2.5.tar.gz", hash = "sha256:17f827e4eb5aeae024509872325e78cdbb0c3d8183b763d2f3d3ae2bd5728f68"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
