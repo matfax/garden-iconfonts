@@ -1,4 +1,4 @@
-name: ensure black
+name: check black
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 jobs:
   black:
     runs-on: ubuntu-latest
-    name: deploy black
+    name: check black style
     defaults:
       run:
         shell: bash
@@ -35,7 +35,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3.1.2
         with:
           commit-message: 'style(format): reformat with black'
-          title: '[style] Deploy Black Style'
+          title: 'Deploy black code style'
           body: |
             This pull requests deploys the new Python code style [black][1].
             [1]: https://github.com/psf/black
