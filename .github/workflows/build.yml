@@ -13,6 +13,9 @@ jobs:
       matrix:
         python-version: [3.7]
         os: [ubuntu-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
     name: python ${{ matrix.python-version }}
     steps:
       - uses: actions/checkout@v2.3.2
@@ -21,11 +24,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: "set pip cache dir"
-        run: echo "::set-env name=pipcache::${pip cache dir}"
+        run: echo "::set-env name=pip-cache::${pip cache dir}"
       - name: caching pip storage
         uses: actions/cache@v2
         with:
-          path: ${{ env.pipcache }}
+          path: ${{ env.pip-cache }}
           key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             ${{ runner.OS }}-${{ matrix.python-version }}-pip
@@ -34,11 +37,11 @@ jobs:
           pip install poetry
           pip install poetry-dynamic-versioning
       - name: "set poetry cache dir"
-        run: echo "::set-env name=poetrycache::${poetry config cache-dir}"
+        run: echo "::set-env name=poetry-cache::${poetry config cache-dir}"
       - name: caching poetry environment
         uses: actions/cache@v2
         with:
-          path: ${{ env.poetrycache }}
+          path: ${{ env.poetry-cache }}
           key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
             ${{ runner.OS }}-${{ matrix.python-version }}-poetry
