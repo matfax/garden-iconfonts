@@ -22,5 +22,6 @@
       "abortStatusCodes": [404]
     }
   ],
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "includeForks": true
 }
