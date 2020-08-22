@@ -16,7 +16,7 @@ jobs:
     defaults:
       run:
         shell: bash
-    name: python ${{ matrix.python-version }}
+    name: build using python ${{ matrix.python-version }} on ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2.3.2
       - name: setting up python ${{ matrix.python-version }}
