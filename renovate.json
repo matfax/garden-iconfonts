@@ -16,12 +16,6 @@
   "vulnerabilityAlerts": {
     "labels": ["security"]
   },
-  "hostRules": [
-    {
-      "abortOnError": true,
-      "abortStatusCodes": [404]
-    }
-  ],
   "labels": ["dependencies"],
   "includeForks": true
 }
