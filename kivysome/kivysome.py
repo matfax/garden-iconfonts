@@ -13,7 +13,6 @@ from kivysome.iconfonts import register, create_fontdict_file
 _VERSION_MATCHER = re.compile(r'.*"version":"([a-zA-Z0-9.]+)"')
 LATEST = "latest"
 
-
 class FontGroup(Enum):
     SOLID = "solid"
     REGULAR = "regular"
@@ -21,8 +20,7 @@ class FontGroup(Enum):
 
 
 def enable(
-    source: str,
-    group: FontGroup = FontGroup.REGULAR,
+    source: str, group: FontGroup = FontGroup.REGULAR,
     force: bool = False,
     font_folder=Path.getcwd() / "fonts",
 ):
