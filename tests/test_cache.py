@@ -4,14 +4,12 @@ from unittest import mock
 import kivysome
 
 requests_gag = mock.patch(
-    'requests.Session.request',
-    mock.Mock(side_effect=RuntimeError(
-        'requests are blocked for testing purposes'
-    ))
+    "requests.Session.request",
+    mock.Mock(side_effect=RuntimeError("requests are blocked for testing purposes")),
 )
 
-class CacheTests(unittest.TestCase):
 
+class CacheTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         kivysome.enable("5.13.1", force=True)

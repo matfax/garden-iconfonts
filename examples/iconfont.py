@@ -13,7 +13,7 @@ from kivy.lang import Builder
 
 from kivysome.iconfonts import register
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     kv = """
 #: import icon kivysome.icon
@@ -52,11 +52,14 @@ BoxLayout:
             PopMatrix
     """
 
-    register('default_font', '../tests/iconfont_sample.ttf',
-             join(dirname(__file__), '../tests/iconfont_sample.fontd'))
+    register(
+        "default_font",
+        "../tests/iconfont_sample.ttf",
+        join(dirname(__file__), "../tests/iconfont_sample.fontd"),
+    )
 
     root = Builder.load_string(kv)
     an = Animation(p=360, duration=2) + Animation(p=0, duration=0)
     an.repeat = True
-    an.start(root.ids['_anim'])
+    an.start(root.ids["_anim"])
     runTouchApp(root)

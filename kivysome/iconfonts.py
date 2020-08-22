@@ -56,18 +56,18 @@ def create_fontdict_file(css_fname, output_fname=""):
 
 def _parse(data):
     # find start index where icons rules start
-    pat_start = re.compile('}.+content:', re.DOTALL)
+    pat_start = re.compile("}.+content:", re.DOTALL)
     rules_start = [x for x in re.finditer(pat_start, data)][0].start()
     data = data[rules_start:]  # crop data
-    data = data.replace("\\", '0x')  # replace unicodes
+    data = data.replace("\\", "0x")  # replace unicodes
     data = data.replace("'", '"')  # replace quotes
     # iterate rule indices and extract value
-    pat_keys = re.compile('[a-zA-Z0-9_-]+:before')
+    pat_keys = re.compile("[a-zA-Z0-9_-]+:before")
     res = dict()
     for i in re.finditer(pat_keys, data):
         start = i.start()
-        end = data.find('}', start)
-        key = i.group().replace(':before', '')
+        end = data.find("}", start)
+        key = i.group().replace(":before", "")
         try:
             value = int(data[start:end].split('"')[1], 0)
         except (IndexError, ValueError):

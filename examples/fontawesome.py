@@ -6,7 +6,7 @@ from os.path import join, dirname
 import kivysome
 from kivysome import FontGroup
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     kv = """
 #: import icon kivysome.icon
@@ -47,10 +47,14 @@ BoxLayout:
 
     # DO NOT COPY THIS LINK!
     # Generate your own here: https://fontawesome.com/kits
-    kivysome.enable("https://kit.fontawesome.com/045c3333e7.js", group=FontGroup.SOLID, font_folder="../fonts")
+    kivysome.enable(
+        "https://kit.fontawesome.com/045c3333e7.js",
+        group=FontGroup.SOLID,
+        font_folder="../fonts",
+    )
 
     root = Builder.load_string(kv)
     an = Animation(p=360, duration=2) + Animation(p=0, duration=0)
     an.repeat = True
-    an.start(root.ids['_anim'])
+    an.start(root.ids["_anim"])
     runTouchApp(root)
