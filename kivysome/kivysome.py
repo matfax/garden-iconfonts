@@ -13,6 +13,7 @@ from kivysome.iconfonts import register, create_fontdict_file
 _VERSION_MATCHER = re.compile(r'.*"version":"([a-zA-Z0-9.]+)"')
 LATEST = "latest"
 
+
 class FontGroup(Enum):
     SOLID = "solid"
     REGULAR = "regular"
@@ -23,7 +24,7 @@ def enable(
     source: str,
     group: FontGroup = FontGroup.REGULAR,
     force: bool = False,
-    font_folder=Path.getcwd() /   "fonts",
+    font_folder=Path.getcwd() / "fonts",
 ):
     """
     All-in-one function to deploy free Font Awesome fonts.
@@ -39,7 +40,7 @@ def enable(
     font_folder = Path(font_folder)
     font_folder.mkdir_p()
 
-    if semver.VersionInfo.isvalid(source) or source==LATEST:
+    if semver.VersionInfo.isvalid(source) or source == LATEST:
         version = source
     else:
         pool_manager = urllib3.PoolManager()
