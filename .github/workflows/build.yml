@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: "set pip cache dir"
-        run: echo "::set-env name=pip-cache::"${pip cache dir}
+        run: echo "::set-env name=pip-cache::$(pip cache dir)"
       - name: caching pip storage
         uses: actions/cache@v2
         with:
@@ -37,7 +37,7 @@ jobs:
           pip install poetry
           pip install poetry-dynamic-versioning
       - name: "set poetry cache dir"
-        run: echo "::set-env name=poetry-cache::"${poetry config cache-dir}
+        run: echo "::set-env name=poetry-cache::$(poetry config cache-dir)"
       - name: caching poetry environment
         uses: actions/cache@v2
         with:
