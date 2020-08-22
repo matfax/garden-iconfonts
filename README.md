@@ -1,16 +1,15 @@
 # kivysome
 
-[![Actions Status](https://github.com/matfax/kivysome/workflows/build/badge.svg)](https://github.com/matfax/kivysome/actions)
-[![codecov](https://codecov.io/gh/matfax/kivysome/branch/master/graph/badge.svg)](https://codecov.io/gh/matfax/kivysome)
-[![Renovate Status](https://badges.renovateapi.com/github/matfax/kivysome)](https://renovatebot.com/)
-[![CodeFactor](https://www.codefactor.io/repository/github/matfax/kivysome/badge)](https://www.codefactor.io/repository/github/matfax/kivysome)
-[![security: bandit](https://img.shields.io/badge/security-bandit-purple.svg)](https://github.com/PyCQA/bandit)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kivysome)](https://pypi.org/project/kivysome/)
-[![PyPI](https://img.shields.io/pypi/v/kivysome?color=%2339A7A6)](https://pypi.org/project/kivysome/)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/kivysome?color=%231447F9)](https://pypistats.org/packages/kivysome)
-[![GitHub License](https://img.shields.io/github/license/matfax/kivysome.svg)](https://github.com/matfax/kivysome/blob/master/LICENSE)
-[![GitHub last commit](https://img.shields.io/github/last-commit/matfax/kivysome?color=%232954A5)](https://github.com/matfax/kivysome/commits/master)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/matfax/kivysome/build/master?style=for-the-badge)](https://github.com/matfax/kivysome/actions)
+[![Codecov](https://img.shields.io/codecov/c/github/matfax/kivysome?style=for-the-badge)](https://codecov.io/gh/matfax/kivysome)
+[![CodeFactor](https://www.codefactor.io/repository/github/matfax/kivysome/badge?style=for-the-badge)](https://www.codefactor.io/repository/github/matfax/kivysome)
+[![security: bandit](https://img.shields.io/badge/security-bandit-purple.svg?style=for-the-badge)](https://github.com/PyCQA/bandit)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=for-the-badge)](https://github.com/psf/black)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kivysome?style=for-the-badge)](https://pypi.org/project/kivysome/)
+[![PyPI](https://img.shields.io/pypi/v/kivysome?color=%2339A7A6&style=for-the-badge)](https://pypi.org/project/kivysome/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/kivysome?color=%231447F9&style=for-the-badge)](https://pypistats.org/packages/kivysome)
+[![GitHub License](https://img.shields.io/github/license/matfax/kivysome.svg?style=for-the-badge)](https://github.com/matfax/kivysome/blob/master/LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/matfax/kivysome?color=%232954A5&style=for-the-badge)](https://github.com/matfax/kivysome/commits/master)
 
 Font Awesome 5 Icons for Kivy
 
