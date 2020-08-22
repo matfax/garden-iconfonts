@@ -20,7 +20,12 @@ class FontGroup(Enum):
     BRANDS = "brands"
 
 
-def enable(source: str, group: FontGroup = FontGroup.REGULAR, force: bool = False, font_folder=Path.getcwd() / "fonts"):
+def enable(
+    source: str,
+    group: FontGroup = FontGroup.REGULAR,
+    force: bool = False,
+    font_folder=Path.getcwd() / "fonts",
+):
     """
     All-in-one function to deploy free Font Awesome fonts.
     It fetches the font file with the version from the given Font Awesome kit script file,
@@ -45,10 +50,12 @@ def enable(source: str, group: FontGroup = FontGroup.REGULAR, force: bool = Fals
             raise ValueError("the given link could not be accessed") from e
         if not result.status == 200:
             raise ValueError("the given link did not return a correct status code")
-        content = result.data.decode('utf-8')
+        content = result.data.decode("utf-8")
 
         if '"license":"free"' not in content:
-            raise ValueError("the given link is not referencing a free version of a Font Awesome kit")
+            raise ValueError(
+                "the given link is not referencing a free version of a Font Awesome kit"
+            )
         version_match = _VERSION_MATCHER.match(content)
         if version_match is None:
             raise ValueError("no version could be parsed from the given link")
@@ -57,7 +64,7 @@ def enable(source: str, group: FontGroup = FontGroup.REGULAR, force: bool = Fals
 
     if version == LATEST:
         repo = "FortAwesome/Font-Awesome"
-        version = lastversion.latest(repo, 'version')
+        version = lastversion.latest(repo, "version")
     elif not semver.VersionInfo.isvalid(version):
         raise ValueError(f"matched version {version} is no valid semantic version")
 
