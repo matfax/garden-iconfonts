@@ -32,7 +32,7 @@ jobs:
         run: black --target-version py37 .
       - name: creating pull request
         id: cpr
-        uses: peter-evans/create-pull-request@v3.1.2
+        uses: peter-evans/create-pull-request@v3.2.0
         with:
           commit-message: 'style(format): reformat with black'
           title: 'Deploy black code style'
