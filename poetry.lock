@@ -44,6 +44,21 @@ six = ">=1.10.0"
 stevedore = ">=1.20.0"
 
 [[package]]
+category = "main"
+description = "Screen-scraping library"
+name = "beautifulsoup4"
+optional = false
+python-versions = "*"
+version = "4.9.1"
+
+[package.dependencies]
+soupsieve = [">1.2", "<2.0"]
+
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
 category = "dev"
 description = "The uncompromising code formatter."
 name = "black"
@@ -267,21 +282,23 @@ description = "A CLI tool to fetch last GitHub release version"
 name = "lastversion"
 optional = false
 python-versions = "*"
-version = "1.1.8"
+version = "1.2.0"
 
 [package.dependencies]
 PyYAML = "*"
 appdirs = "*"
+beautifulsoup4 = "*"
 cachecontrol = "*"
 feedparser = "*"
 lockfile = "*"
 packaging = "*"
 python-dateutil = "*"
 requests = ">=2.6.1"
+six = "*"
 tqdm = "*"
 
 [package.extras]
-tests = ["requests (>=2.6.1)", "packaging", "cachecontrol", "lockfile", "appdirs", "python-dateutil", "feedparser", "pyyaml", "tqdm", "pytest (>=4.4.0)", "flake8", "pytest-xdist"]
+tests = ["requests (>=2.6.1)", "packaging", "cachecontrol", "lockfile", "appdirs", "python-dateutil", "feedparser", "pyyaml", "tqdm", "six", "beautifulsoup4", "pytest (>=4.4.0)", "flake8", "pytest-xdist"]
 
 [[package]]
 category = "main"
@@ -541,6 +558,14 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "3.0.4"
 
 [[package]]
+category = "main"
+description = "A modern CSS selector implementation for Beautiful Soup."
+name = "soupsieve"
+optional = false
+python-versions = "*"
+version = "1.9.6"
+
+[[package]]
 category = "dev"
 description = "Manage dynamic plugins for Python applications"
 name = "stevedore"
@@ -628,7 +653,8 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "05e84ec374a523f9c37fc02c8285e3f83ba35a43830e1d87c5d059c7a662ad62"
+content-hash = "18e23930d8afd311bf186e7a5c77e60d585bc4c168684e7da7981ba4c42e1d42"
+lock-version = "1.0"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -647,6 +673,11 @@ attrs = [
 bandit = [
     {file = "bandit-1.6.2-py2.py3-none-any.whl", hash = "sha256:336620e220cf2d3115877685e264477ff9d9abaeb0afe3dc7264f55fa17a3952"},
     {file = "bandit-1.6.2.tar.gz", hash = "sha256:41e75315853507aa145d62a78a2a6c5e3240fe14ee7c601459d0df9418196065"},
+]
+beautifulsoup4 = [
+    {file = "beautifulsoup4-4.9.1-py2-none-any.whl", hash = "sha256:e718f2342e2e099b640a34ab782407b7b676f47ee272d6739e60b8ea23829f2c"},
+    {file = "beautifulsoup4-4.9.1-py3-none-any.whl", hash = "sha256:a6237df3c32ccfaee4fd201c8f5f9d9df619b93121d01353a64a73ce8c6ef9a8"},
+    {file = "beautifulsoup4-4.9.1.tar.gz", hash = "sha256:73cc4d115b96f79c7d77c1c7f7a0a8d4c57860d1041df407dd1aae7f07a77fd7"},
 ]
 black = [
     {file = "black-19.10b0-py36-none-any.whl", hash = "sha256:1b30e59be925fafc1ee4565e5e08abef6b03fe455102883820fe5ee2e4734e0b"},
@@ -776,8 +807,8 @@ kivy-garden = [
     {file = "kivy-garden-0.1.4.tar.gz", hash = "sha256:c256f42788421273a08fbb0a228f0fb0e80dd86b629fb8c0920507f645be6c72"},
 ]
 lastversion = [
-    {file = "lastversion-1.1.8-py3-none-any.whl", hash = "sha256:73ce292076cce7100d59227da879d8f2b14a4fda829e61c594c33fc933a58af9"},
-    {file = "lastversion-1.1.8.tar.gz", hash = "sha256:d9ca8484b669538103083d1104e0976369dc41ec1e29253d8538ab833bd1c0ce"},
+    {file = "lastversion-1.2.0-py3-none-any.whl", hash = "sha256:375bccba97d447f031c13f6dcc613ee6829727613edea7ee28bb8b3686c1ddc0"},
+    {file = "lastversion-1.2.0.tar.gz", hash = "sha256:0b72b1a103ed2f7522a7147d79640b19884bb8b1b31ef16963d9eddbd35c1564"},
 ]
 lockfile = [
     {file = "lockfile-0.12.2-py2.py3-none-any.whl", hash = "sha256:6c3cb24f344923d30b2785d5ad75182c8ea7ac1b6171b08657258ec7429d50fa"},
@@ -943,6 +974,10 @@ six = [
 smmap = [
     {file = "smmap-3.0.4-py2.py3-none-any.whl", hash = "sha256:54c44c197c819d5ef1991799a7e30b662d1e520f2ac75c9efbeb54a742214cf4"},
     {file = "smmap-3.0.4.tar.gz", hash = "sha256:9c98bbd1f9786d22f14b3d4126894d56befb835ec90cef151af566c7e19b5d24"},
+]
+soupsieve = [
+    {file = "soupsieve-1.9.6-py2.py3-none-any.whl", hash = "sha256:feb1e937fa26a69e08436aad4a9037cd7e1d4c7212909502ba30701247ff8abd"},
+    {file = "soupsieve-1.9.6.tar.gz", hash = "sha256:7985bacc98c34923a439967c1a602dc4f1e15f923b6fcf02344184f86cc7efaa"},
 ]
 stevedore = [
     {file = "stevedore-3.2.0-py3-none-any.whl", hash = "sha256:c8f4f0ebbc394e52ddf49de8bcc3cf8ad2b4425ebac494106bbc5e3661ac7633"},
