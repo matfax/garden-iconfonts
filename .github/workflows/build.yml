@@ -3,8 +3,12 @@ name: build
 on:
   push:
     branches: [ master ]
-  pull_request:
+  pull_request_target:
     branches: [ master ]
+    paths:
+      - '**.py'
+      - '**/poetry.lock'
+      - '**/pyproject.toml'
 
 jobs:
   build:
@@ -19,11 +23,14 @@ jobs:
     name: python ${{ matrix.python-version }} on ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2.3.2
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
       - name: setting up python ${{ matrix.python-version }}
         uses: actions/setup-python@v2.1.2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: "set pip cache dir"
+      - name: set pip cache dir
         run: echo "::set-env name=pip-cache::$(pip cache dir)"
       - name: caching pip storage
         uses: actions/cache@v2.1.1
@@ -31,20 +38,24 @@ jobs:
           path: ${{ env.pip-cache }}
           key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
-            ${{ runner.OS }}-${{ matrix.python-version }}-pip
+            ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
+            ${{ runner.os }}-${{ matrix.python-version }}-pip
       - name: installing poetry
         run: |
           pip install poetry
           pip install poetry-dynamic-versioning
       - name: "set poetry cache dir"
-        run: echo "::set-env name=poetry-cache::$(poetry config cache-dir)"
+        run: |
+          echo "::set-env name=poetry-cache::$(poetry config cache-dir)"
+          echo "::set-env name=poetry-version::$(poetry --version)"
       - name: caching poetry environment
         uses: actions/cache@v2.1.1
         with:
           path: ${{ env.poetry-cache }}
-          key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ env.poetry-version }}-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
-            ${{ runner.OS }}-${{ matrix.python-version }}-poetry
+            ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ env.poetry-version }}-${{ hashFiles('**/poetry.lock') }}
+            ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ env.poetry-version }}
       - name: installing dependencies
         run: poetry install -n -vv --no-ansi
       - name: running tests
