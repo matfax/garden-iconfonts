@@ -17,7 +17,7 @@ def register(name, ttf_fname, fontd_fname):
 
 
 def icon(code, size=None, color=None, font_name=None):
-    """ Gets an icon from iconfont.
+    """Gets an icon from iconfont.
     :param code: Icon codename (ex: 'icon-name')
     :param size: Icon size
     :param color: Icon color
