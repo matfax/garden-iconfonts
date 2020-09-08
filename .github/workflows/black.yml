@@ -3,39 +3,59 @@ name: check black
 on:
   push:
     branches: [ master ]
+    paths:
+      - '**.py'
+      - '**/poetry.lock'
+      - '**/pyproject.toml'
+      - '**/black.yml'
+  pull_request_target:
+    branches: [ master ]
+    paths:
+      - '**.py'
+      - '**/poetry.lock'
+      - '**/pyproject.toml'
 
 jobs:
   black:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: [3.7]
+        os: [ubuntu-latest]
     name: check black style
     defaults:
       run:
         shell: bash
     steps:
       - uses: actions/checkout@v2.3.2
-      - name: setting up python
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.PAT }}
+      - name: setting up python ${{ matrix.python-version }}
         uses: actions/setup-python@v2.1.2
         with:
-          python-version: '3.7'
+          python-version: ${{ matrix.python-version }}
       - name: "set pip cache dir"
         run: echo "::set-env name=pip-cache::$(pip cache dir)"
       - name: caching pip storage
         uses: actions/cache@v2.1.1
         with:
           path: ${{ env.pip-cache }}
-          key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-${{ matrix.python-version }}-black-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
-            ${{ runner.OS }}-${{ matrix.python-version }}-pip
+            ${{ runner.os }}-${{ matrix.python-version }}-black-${{ hashFiles('**/poetry.lock') }}
+            ${{ runner.os }}-${{ matrix.python-version }}-black
       - name: installing black
         run: pip install black
       - name: running black
         run: black --target-version py37 .
       - name: creating pull request
-        id: cpr
-        uses: peter-evans/create-pull-request@v3.1.2
+        if: ${{ github.head_ref == '' }}
+        uses: peter-evans/create-pull-request@v3.2.0
         with:
           commit-message: 'style(format): reformat with black'
-          title: 'Deploy black code style'
+          title: 'Update black code style'
           body: |
             This pull requests deploys the new Python code style [black][1].
             [1]: https://github.com/psf/black
@@ -44,6 +64,10 @@ jobs:
             chore
             black
           branch: black
-      - name: Check outputs
-        run: |
-          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+      - name: committing changed files
+        if: ${{ github.head_ref != '' }}
+        uses: stefanzweifel/git-auto-commit-action@v4.4.1
+        with:
+          commit_message: 'style(format): reformat with black'
+          branch: ${{ github.head_ref }}
+          file_pattern: '*.py'
