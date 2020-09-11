@@ -66,7 +66,7 @@ jobs:
           branch: black
       - name: committing changed files
         if: ${{ github.head_ref != '' }}
-        uses: stefanzweifel/git-auto-commit-action@v4.4.1
+        uses: stefanzweifel/git-auto-commit-action@v4.5.0
         with:
           commit_message: 'style(format): reformat with black'
           branch: ${{ github.head_ref }}
