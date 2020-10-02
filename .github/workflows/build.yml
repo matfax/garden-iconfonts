@@ -47,7 +47,7 @@ jobs:
       - name: "set poetry cache dir"
         run: |
           echo "::set-env name=poetry-cache::$(poetry config cache-dir)"
-          echo "::set-env name=poetry-version::$(poetry --version)"
+          echo "::set-env name=poetry-version::$(poetry --version | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')"
       - name: caching poetry environment
         uses: actions/cache@v2.1.1
         with:
