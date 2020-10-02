@@ -1,6 +1,7 @@
 name: build
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
   pull_request_target:
@@ -36,7 +37,7 @@ jobs:
         uses: actions/cache@v2.1.1
         with:
           path: ${{ env.pip-cache }}
-          key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}-${{ github.event_name }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}
             ${{ runner.os }}-${{ matrix.python-version }}-pip
@@ -52,10 +53,7 @@ jobs:
         uses: actions/cache@v2.1.1
         with:
           path: ${{ env.poetry-cache }}
-          key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ env.poetry-version }}-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ env.poetry-version }}-${{ hashFiles('**/poetry.lock') }}
-            ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ env.poetry-version }}
+          key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ env.poetry-version }}-${{ hashFiles('**/poetry.lock') }}-${{ github.event_name }}
       - name: installing dependencies
         run: poetry install -n -vv --no-ansi
       - name: running tests
