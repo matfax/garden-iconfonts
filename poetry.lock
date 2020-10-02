@@ -211,7 +211,7 @@ description = "Green is a clean, colorful, fast python test runner."
 name = "green"
 optional = false
 python-versions = "*"
-version = "3.2.1"
+version = "3.2.2"
 
 [package.dependencies]
 colorama = "*"
@@ -662,7 +662,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "b74b310ee316f859d70c4308d0d39c46dffcf1d12371d19490a408af29fea297"
+content-hash = "2726603ecb592eb077c361dbcf74d44ee110004668e1e22550f57084cfa9c757"
 lock-version = "1.0"
 python-versions = "^3.7"
 
@@ -778,7 +778,7 @@ gitpython = [
     {file = "GitPython-3.1.7.tar.gz", hash = "sha256:2db287d71a284e22e5c2846042d0602465c7434d910406990d5b74df4afb0858"},
 ]
 green = [
-    {file = "green-3.2.1.tar.gz", hash = "sha256:c5a90e247237ac7e320120961608cf65191134fa400d327cbd4d09864c880935"},
+    {file = "green-3.2.2.tar.gz", hash = "sha256:a7cc909290019903323481a1819addefb9d32b4868773326dec4648c63bbc071"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
