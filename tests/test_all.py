@@ -10,11 +10,6 @@ class Tests(unittest.TestCase):
         # Avoid IP blocks from GitHub due to overload
         time.sleep(1)
 
-    def test_kivy_awesome_regular(self):
-        # DO NOT COPY THIS LINK!
-        # Generate your own here: https://fontawesome.com/kits
-        kivysome.enable("https://kit.fontawesome.com/23372bf9a2.js", force=True)
-
     def test_kivy_awesome_version(self):
         kivysome.enable("5.13.1", force=True)
 

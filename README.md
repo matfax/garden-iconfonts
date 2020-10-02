@@ -30,7 +30,8 @@ kivysome.enable(kivysome.LATEST, group=kivysome.FontGroup.REGULAR)
 
 #### Using a kit
 
-This might be extended to commercial versions of Font Awesome on demand.
+Kits will not be maintained any further.
+They will work as long as Font Awesome don't change their API.
 
 ##### 1. Generate your kit
 

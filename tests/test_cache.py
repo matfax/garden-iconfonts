@@ -19,7 +19,7 @@ class CacheTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 # DO NOT COPY THIS LINK!
                 # Generate your own here: https://fontawesome.com/kits
-                kivysome.enable("https://kit.fontawesome.com/23372bf9a2.js", force=True)
+                kivysome.enable("5.13.1", force=True)
 
     def test_kivy_awesome_cached_version(self):
         with requests_gag:
