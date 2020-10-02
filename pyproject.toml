@@ -18,7 +18,7 @@ lastversion = "1.2.0"
 semver = "^2.10.2"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.0.1"
+pytest = "^6.1.0"
 green = "^3.0.0"
 kivy = "1.11.1"
 pygments = "^2.5.2"
