@@ -100,7 +100,7 @@ redis = ["redis (>=2.10.5)"]
 
 [[package]]
 name = "cached-property"
-version = "1.5.1"
+version = "1.5.2"
 description = "A decorator for caching properties in classes."
 category = "main"
 optional = false
@@ -335,14 +335,14 @@ python-versions = "*"
 
 [[package]]
 name = "mutapath"
-version = "0.16.1"
+version = "0.16.2"
 description = "mutable pathlib"
 category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
-cached-property = "1.5.1"
+cached-property = "1.5.2"
 filelock = "3.0.12"
 path = ">=13.1,<16.0"
 singletons = "0.2.5"
@@ -686,8 +686,8 @@ cachecontrol = [
     {file = "CacheControl-0.12.6.tar.gz", hash = "sha256:be9aa45477a134aee56c8fac518627e1154df063e85f67d4f83ce0ccc23688e8"},
 ]
 cached-property = [
-    {file = "cached-property-1.5.1.tar.gz", hash = "sha256:9217a59f14a5682da7c4b8829deadbfc194ac22e9908ccf7c8820234e80a1504"},
-    {file = "cached_property-1.5.1-py2.py3-none-any.whl", hash = "sha256:3a026f1a54135677e7da5ce819b0c690f156f37976f3e30c5430740725203d7f"},
+    {file = "cached-property-1.5.2.tar.gz", hash = "sha256:9fa5755838eecbb2d234c3aa390bd80fbd3ac6b6869109bfc1b499f7bd89a130"},
+    {file = "cached_property-1.5.2-py2.py3-none-any.whl", hash = "sha256:df4f613cf7ad9a588cc381aaf4a512d26265ecebd5eb9e1ba12f1319eb85a6a0"},
 ]
 certifi = [
     {file = "certifi-2020.6.20-py2.py3-none-any.whl", hash = "sha256:8fc0819f1f30ba15bdb34cceffb9ef04d99f420f68eb75d901e9560b8749fc41"},
@@ -868,8 +868,8 @@ msgpack = [
     {file = "msgpack-1.0.0.tar.gz", hash = "sha256:9534d5cc480d4aff720233411a1f765be90885750b07df772380b34c10ecb5c0"},
 ]
 mutapath = [
-    {file = "mutapath-0.16.1-py3-none-any.whl", hash = "sha256:ffeecee2978aa8c89f882e0e13960559db58e33f12afd4ea8e86a1ab51f27b2c"},
-    {file = "mutapath-0.16.1.tar.gz", hash = "sha256:340ee269fd679fc97ab9325307cd0111d2b7f77ef67d9d4ab364ebf470e15e22"},
+    {file = "mutapath-0.16.2-py3-none-any.whl", hash = "sha256:72b6f2c7ac435356749efae083335cae12029740a1e0656356ab16ea0c37732d"},
+    {file = "mutapath-0.16.2.tar.gz", hash = "sha256:c7c0a1a29c6e8e78b3c686fdd8acdd1a852e71dd011576176ca255c926e24c47"},
 ]
 mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
