@@ -281,7 +281,7 @@ requests = "*"
 
 [[package]]
 name = "lastversion"
-version = "1.2.0"
+version = "1.2.3"
 description = "A CLI tool to fetch last GitHub release version"
 category = "main"
 optional = false
@@ -291,7 +291,7 @@ python-versions = "*"
 appdirs = "*"
 beautifulsoup4 = "*"
 cachecontrol = "*"
-feedparser = "*"
+feedparser = {version = "*", markers = "python_version >= \"3.0.0\""}
 lockfile = "*"
 packaging = "*"
 python-dateutil = "*"
@@ -301,7 +301,7 @@ six = "*"
 tqdm = "*"
 
 [package.extras]
-tests = ["requests (>=2.6.1)", "packaging", "cachecontrol", "lockfile", "appdirs", "python-dateutil", "feedparser", "pyyaml", "tqdm", "six", "beautifulsoup4", "pytest (>=4.4.0)", "flake8", "pytest-xdist"]
+tests = ["requests (>=2.6.1)", "packaging", "cachecontrol", "lockfile", "appdirs", "python-dateutil", "pyyaml", "tqdm", "six", "beautifulsoup4", "pytest (>=4.4.0)", "flake8", "pytest-xdist (==1.29.0)", "feedparser (<=5.2.1)", "feedparser"]
 
 [[package]]
 name = "lockfile"
@@ -654,7 +654,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "8b150d63551751325083307c0ac430f9d1a37264297db352e7b7c67c41cdf491"
+content-hash = "b0c0e49a6e8b93942ccbdb3bca4273aad1ac09fe0bbcb3be205033dfbeb89f52"
 
 [metadata.files]
 appdirs = [
@@ -805,8 +805,8 @@ kivy-garden = [
     {file = "kivy-garden-0.1.4.tar.gz", hash = "sha256:c256f42788421273a08fbb0a228f0fb0e80dd86b629fb8c0920507f645be6c72"},
 ]
 lastversion = [
-    {file = "lastversion-1.2.0-py3-none-any.whl", hash = "sha256:375bccba97d447f031c13f6dcc613ee6829727613edea7ee28bb8b3686c1ddc0"},
-    {file = "lastversion-1.2.0.tar.gz", hash = "sha256:0b72b1a103ed2f7522a7147d79640b19884bb8b1b31ef16963d9eddbd35c1564"},
+    {file = "lastversion-1.2.3-py3-none-any.whl", hash = "sha256:e057f14f54083b6fd661f30003443675f0a259717c46db4e306f1fc569c59dcd"},
+    {file = "lastversion-1.2.3.tar.gz", hash = "sha256:0127f8622d7eb3b3d4e8974b5a3448e0ffec601ad74b6b92a294f40b6d062014"},
 ]
 lockfile = [
     {file = "lockfile-0.12.2-py2.py3-none-any.whl", hash = "sha256:6c3cb24f344923d30b2785d5ad75182c8ea7ac1b6171b08657258ec7429d50fa"},
