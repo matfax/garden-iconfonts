@@ -209,7 +209,7 @@ gitdb = ">=4.0.1,<5"
 
 [[package]]
 name = "green"
-version = "3.2.3"
+version = "3.2.4"
 description = "Green is a clean, colorful, fast python test runner."
 category = "dev"
 optional = false
@@ -654,7 +654,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "b0c0e49a6e8b93942ccbdb3bca4273aad1ac09fe0bbcb3be205033dfbeb89f52"
+content-hash = "02d0a48a80217ebbff7097da6de62422eca5bdaeb03068cbac546b544c623250"
 
 [metadata.files]
 appdirs = [
@@ -768,7 +768,7 @@ gitpython = [
     {file = "GitPython-3.1.7.tar.gz", hash = "sha256:2db287d71a284e22e5c2846042d0602465c7434d910406990d5b74df4afb0858"},
 ]
 green = [
-    {file = "green-3.2.3.tar.gz", hash = "sha256:2fc2fdd86dbc700ca6afa6d83f1216bb9bcaf4d1b3ae36ba52878ac1b9cd063c"},
+    {file = "green-3.2.4.tar.gz", hash = "sha256:3473abb4629c8c1af9f6b59a4f9c757315736580053a64bbfd91ff21ccad57a8"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
