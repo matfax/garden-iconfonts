@@ -23,7 +23,7 @@ green = "^3.2.3"
 kivy = "1.11.1"
 pygments = "^2.7.1"
 coverage = "^5.3"
-codecov = "^2.1.9"
+codecov = "^2.1.11"
 black = "^20.8b1"
 bandit = "^1.6.2"
 
