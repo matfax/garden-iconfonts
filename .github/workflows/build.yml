@@ -34,7 +34,7 @@ jobs:
       - name: set pip cache dir
         run: echo "::set-env name=pip-cache::$(pip cache dir)"
       - name: caching pip storage
-        uses: actions/cache@v2.1.2
+        uses: actions/cache@v2.1.4
         with:
           path: ${{ env.pip-cache }}
           key: ${{ runner.os }}-${{ matrix.python-version }}-pip-${{ hashFiles('**/poetry.lock') }}-${{ github.event_name }}
@@ -50,7 +50,7 @@ jobs:
           echo "::set-env name=poetry-cache::$(poetry config cache-dir)"
           echo "::set-env name=poetry-version::$(poetry --version | sed 's/[^0-9.]*\([0-9.]*\).*/\1/')"
       - name: caching poetry environment
-        uses: actions/cache@v2.1.2
+        uses: actions/cache@v2.1.4
         with:
           path: ${{ env.poetry-cache }}
           key: ${{ runner.os }}-${{ matrix.python-version }}-poetry-${{ env.poetry-version }}-${{ hashFiles('**/poetry.lock') }}-${{ github.event_name }}
