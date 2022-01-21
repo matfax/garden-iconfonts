@@ -19,7 +19,7 @@ semver = "^2.10.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"
-green = "^3.2.3"
+green = "^3.4.1"
 kivy = "1.11.1"
 pygments = "^2.7.1"
 coverage = "^5.3"
