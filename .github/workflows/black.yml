@@ -52,7 +52,7 @@ jobs:
         run: black --target-version py37 .
       - name: creating pull request
         if: ${{ github.head_ref == '' }}
-        uses: peter-evans/create-pull-request@v3.4.1
+        uses: peter-evans/create-pull-request@v4.1.1
         with:
           commit-message: 'style(format): reformat with black'
           title: 'Update black code style'
